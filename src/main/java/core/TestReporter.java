@@ -83,6 +83,6 @@ public class TestReporter {
 		Path destPath = destFile.toPath();
 		Files.copy(srcFile, destFile);
 		
-		return destPath.toAbsolutePath().toString();
+		return destPath.toString();
 	}
 }
