@@ -79,10 +79,10 @@ public class TestReporter {
 		String  date = format.format(now);
 		date = date.replaceAll("/","").replaceAll(":", "").replaceAll(" ", "");
 		
-		File destFile = new File("./ScreenShots/" + date + ".png");
+		File destFile = new File("/ScreenShots/" + date + ".png");
 		Path destPath = destFile.toPath();
 		Files.copy(srcFile, destFile);
 		
-		return destPath.toString();
+		return destPath.toAbsolutePath().toString();
 	}
 }
