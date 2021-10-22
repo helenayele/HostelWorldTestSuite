@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="testSuite" verbose="1" >
+  <parameter name="browser" value="firefox"></parameter>
+  <test name="smoke" >
+    <classes>
+       <class name="tests.HostelBookingTests" />
+    </classes>
+  </test>
+</suite>

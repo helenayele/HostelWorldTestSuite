@@ -1,0 +1,62 @@
+{
+  "testdata":
+  [
+    {"testname":"HostelCheckOutTest",
+     "iteration" : [
+        {
+          "city":"Paris",
+          "checkindate":"10-October-2021",
+          "checkoutdate":"15-October-2021"
+        },
+        {
+          "city":"London",
+          "checkindate":"1-January-2022",
+          "checkoutdate":"5-January-2022"
+        },
+        {
+          "city":"Mumbai",
+          "checkindate":"1-March-2022",
+          "checkoutdate":"3-March-2022"
+        }
+      ]
+    },
+    {"testname":"HostelCheckOutTest_2",
+     "iteration" : [
+        {
+          "city":"Paris",
+          "checkindate":"10-October-2021",
+          "checkoutdate":"15-October-2021"
+        },
+        {
+          "city":"London",
+          "checkindate":"1-January-2022",
+          "checkoutdate":"5-January-2022"
+        },
+        {
+          "city":"Mumbai",
+          "checkindate":"1-March-2022",
+          "checkoutdate":"3-March-2022"
+        }
+      ]
+    },
+    {"testname":"HostelCheckOutTest_3",
+     "iteration" : [
+        {
+          "city":"Paris",
+          "checkindate":"10-October-2021",
+          "checkoutdate":"15-October-2021"
+        },
+        {
+          "city":"London",
+          "checkindate":"1-January-2022",
+          "checkoutdate":"5-January-2022"
+        },
+        {
+          "city":"Mumbai",
+          "checkindate":"1-March-2022",
+          "checkoutdate":"3-March-2022"
+        }
+      ]
+    }
+  ]
+}
