@@ -14,6 +14,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -28,23 +29,18 @@ import core.DriverFactory;
 import core.ExcelDataProvider;
 import core.ITestData;
 import core.JSONDataProvider;
+import core.TestReporter;
 
 public class TestBase {
 
 	private WebDriver driver;
 	private DriverFactory df;
-	private ExtentReports extentReport;
-	ExtentTest test ;
+	private TestReporter reporter;
+	
 	@BeforeSuite
 	public void initSuite() {
 		FileConfig.loadConfig(System.getenv("env"));
-		String filePath = System.getProperty("user.dir")+"//reports//";
-		System.out.println(filePath + " file path");
-		extentReport = new ExtentReports(filePath, true);
-		File file = new File("./Screenshots");
-		if (!file.exists()) {
-			file.mkdir();
-		}
+		reporter = new TestReporter();	
 	}
 	
 	//@Parameters("browser")
@@ -57,31 +53,37 @@ public class TestBase {
 		}
 	}
 	
-	@BeforeMethod
-	public void initTestReport(Method method) {
-		 test = new ExtentTest(method.getName(), ""); 
-	}
 	
-	public ExtentTest report() {
-		if (test!=null) {
-			return test;
+	  @BeforeMethod 
+	  public void initTestReport(Method method) { 
+		reporter.startReporting(method.getName(), driver);
+		  
+	  }
+	 
+	
+	public TestReporter report() {
+		if (reporter != null) {
+			return reporter;
 		}
 		
 		return null;
 	}
-	@AfterMethod
-	public void closeReport() {
-		extentReport.endTest(test);
-	}
+	
+	  @AfterMethod 
+	  public void closeReport() { 
+		 
+		  reporter.endReporting();
+	  }
+	 
 	
 	@AfterClass(alwaysRun=true)
 	public void killDriver() {
 		df.quitDriver();
 	}
 	
+	@AfterSuite
 	public void clearReport() {
-		extentReport.flush();
-		extentReport.close();
+		reporter.flushReport();
 	}
 	
 	protected WebDriver driver() {
@@ -132,20 +134,5 @@ public class TestBase {
 		return dataArray;
 	}
 	
-	public void takeSnapShots() throws Exception{
-		WebDriver driver = driver();
-		TakesScreenshot shot = (TakesScreenshot)driver;
-		File srcFile = shot.getScreenshotAs(OutputType.FILE);
-		Path srcPath = srcFile.toPath();  
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/mm/yyy hh:mm:ss");
-		LocalDateTime now = LocalDateTime.now();
-		String  date = format.format(now);
-		date = date.replaceAll("/","").replaceAll(":", "").replaceAll(" ", "");
-		
-		File destFile = new File("./ScreenShots/" + date + ".png");
-		Path destPath = destFile.toPath();
-		Files.copy(srcFile, destFile);
-		
-		
-	}
+	
 }

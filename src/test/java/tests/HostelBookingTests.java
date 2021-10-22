@@ -26,24 +26,23 @@ public class HostelBookingTests extends TestBase{
     }
 
 	@Test(dataProvider="getData")
-	public void HostelCheckOutTest(Map<String,String> data) {
+	public void HostelCheckOutTest(Map<String,String> data) throws Exception {
 		try {
 			home.launchApp();
-			report().log(LogStatus.INFO, "App is launched successfully");
+			report().report(LogStatus.INFO,"Launching app step", "App is launched successfully");
 			home.setDestination(data.get("city"));
-			report().log(LogStatus.PASS, "User selects city successfully");
-			takeSnapShots();
+			report().report(LogStatus.PASS, "Desiination city selection step","User selects city successfully");
 			home.setTravelDate(data.get("checkindate"), data.get("checkoutdate"));
-			report().log(LogStatus.PASS, "User selects checkIn and checkOut day successfully");
+			report().report(LogStatus.PASS, "Checkinout","User selects checkIn and checkOut day successfully",true);
 			home.performHostelSeach();
-			report().log(LogStatus.PASS, "Search is done successfully");
+			report().report(LogStatus.PASS, "SearchStep","User ables to search ",true);;
 			search.clickFirstProperty();
-			report().log(LogStatus.PASS, "USer selects first property successfully");
+			report().report(LogStatus.PASS, "First property","User selects first Property successfully",true);
 			//property.chooseRoomToBook();
 			//System.out.println();
 			
 		}catch(Exception e) {
-			report().log(LogStatus.FAIL,e.getMessage());
+			report().report(LogStatus.FAIL,"Exception Occured",e.getMessage(),true);
 		}
 	}
 	
