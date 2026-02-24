@@ -61,7 +61,7 @@
 				<configuration>
 					<environmentVariables>
 						<browser>${browser}</browser>
-						<env>${env}</env>
+						<env>win</env>
 						<ds>${ds}</ds>
 					</environmentVariables>
 					<suiteXmlFiles>
